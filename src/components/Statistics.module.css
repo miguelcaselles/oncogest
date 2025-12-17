@@ -1,0 +1,265 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, white 0%, var(--color-gray-50) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-100);
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-gray-600);
+}
+
+.filterLabel {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.filterGroup select {
+  min-width: 160px;
+}
+
+.customDates {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.customDates input {
+  max-width: 150px;
+}
+
+.customDates span {
+  color: var(--color-gray-500);
+  font-size: 0.875rem;
+}
+
+.exportButtons {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-100);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 150ms ease;
+}
+
+.statCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.statIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.statValue {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.statLabel {
+  font-size: 0.8125rem;
+  color: var(--color-gray-500);
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+.statPercent {
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.chartTabs {
+  display: flex;
+  gap: 0.25rem;
+  background-color: var(--color-gray-100);
+  padding: 0.375rem;
+  border-radius: var(--radius-lg);
+  width: fit-content;
+}
+
+.chartTab {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all 150ms ease;
+}
+
+.chartTab:hover {
+  color: var(--color-gray-700);
+}
+
+.activeTab {
+  background-color: white;
+  color: var(--color-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chartContainer {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-100);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.chartWrapper {
+  min-height: 400px;
+}
+
+.chartTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-gray-800);
+  margin-bottom: 1rem;
+}
+
+.noData {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  color: var(--color-gray-400);
+  font-size: 0.9375rem;
+}
+
+.highlightCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #14b8a6 100%);
+  border-radius: var(--radius-xl);
+  color: white;
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.3);
+}
+
+.highlightValue {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.highlightLabel {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 1024px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filterGroup {
+    width: 100%;
+  }
+
+  .filterGroup select {
+    flex: 1;
+  }
+
+  .exportButtons {
+    margin-left: 0;
+    flex-direction: column;
+  }
+
+  .exportButtons button {
+    width: 100%;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chartTabs {
+    width: 100%;
+  }
+
+  .chartTab {
+    flex: 1;
+    text-align: center;
+    padding: 0.625rem 0.5rem;
+  }
+
+  .highlightCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    flex-direction: row;
+  }
+
+  .customDates {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .customDates input {
+    max-width: 100%;
+  }
+}

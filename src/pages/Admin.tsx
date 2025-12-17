@@ -1,12 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { Trash2, RefreshCw, Database, AlertCircle, Pill, Plus, Search } from 'lucide-react';
+import { Trash2, RefreshCw, Database, AlertCircle, Pill, Plus, Search, BarChart3 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../lib/supabase';
+import { Statistics } from '../components/Statistics';
 import type { Elaboracion, Medicamento } from '../types';
 import styles from './Admin.module.css';
 
-type TabType = 'elaboraciones' | 'medicamentos';
+type TabType = 'elaboraciones' | 'medicamentos' | 'estadisticas';
 
 export function Admin() {
   const [activeTab, setActiveTab] = useState<TabType>('elaboraciones');
@@ -81,9 +82,10 @@ export function Admin() {
   useEffect(() => {
     if (activeTab === 'elaboraciones') {
       fetchElaboraciones();
-    } else {
+    } else if (activeTab === 'medicamentos') {
       fetchMedicamentos();
     }
+    // estadisticas tab handles its own data fetching
   }, [activeTab, fetchElaboraciones, fetchMedicamentos]);
 
   useEffect(() => {
@@ -199,14 +201,21 @@ export function Admin() {
           onClick={() => setActiveTab('elaboraciones')}
         >
           <Database size={18} />
-          Elaboraciones
+          <span>Elaboraciones</span>
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'medicamentos' ? styles.activeTab : ''}`}
           onClick={() => setActiveTab('medicamentos')}
         >
           <Pill size={18} />
-          Medicamentos
+          <span>Medicamentos</span>
+        </button>
+        <button
+          className={`${styles.tab} ${activeTab === 'estadisticas' ? styles.activeTab : ''}`}
+          onClick={() => setActiveTab('estadisticas')}
+        >
+          <BarChart3 size={18} />
+          <span>Estadísticas</span>
         </button>
       </div>
 
@@ -416,6 +425,8 @@ export function Admin() {
           </div>
         </>
       )}
+
+      {activeTab === 'estadisticas' && <Statistics />}
     </div>
   );
 }

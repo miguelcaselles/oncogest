@@ -61,11 +61,11 @@ export function useElaboraciones() {
     }
 
     try {
+      // Only hide elaboraciones that are 'gestionado', keep showing 'usado' items
       const { data, error: fetchError } = await supabase
         .from('elaboraciones')
         .select('*')
         .eq('gestionado', false)
-        .eq('usado', false)
         .order('caducidad', { ascending: true });
 
       if (fetchError) throw fetchError;

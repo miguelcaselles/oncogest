@@ -18,6 +18,7 @@ export function Sobrantes() {
     addElaboracion,
     updateElaboracion,
     deleteElaboracion,
+    setElaboraciones,
   } = useElaboraciones();
 
   const handleToggleUsado = async (id: string, usado: boolean) => {
@@ -26,6 +27,10 @@ export function Sobrantes() {
 
   const handleToggleGestionado = async (id: string, gestionado: boolean) => {
     await updateElaboracion(id, { gestionado });
+    // Remove from local state when marked as gestionado (since query filters by gestionado=false)
+    if (gestionado) {
+      setElaboraciones((prev) => prev.filter((e) => e.id !== id));
+    }
   };
 
   const handleAddElaboracion = async (elaboracion: Parameters<typeof addElaboracion>[0]) => {

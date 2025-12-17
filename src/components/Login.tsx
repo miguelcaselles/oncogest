@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Lock, AlertCircle } from 'lucide-react';
+import { Shield, KeyRound, AlertCircle, ArrowRight } from 'lucide-react';
 import styles from './Login.module.css';
 
 interface LoginProps {
@@ -29,39 +29,57 @@ export function Login({ onLogin }: LoginProps) {
   return (
     <div className={styles.container}>
       <div className={`${styles.card} ${shake ? styles.shake : ''}`}>
-        <div className={styles.iconWrapper}>
-          <Lock size={32} />
+        <div className={styles.logoSection}>
+          <div className={styles.logoWrapper}>
+            <Shield size={36} strokeWidth={2.5} />
+          </div>
+          <h1 className={styles.title}>OncoGest</h1>
+          <p className={styles.subtitle}>Sistema de Gestión Oncológica</p>
         </div>
 
-        <h1 className={styles.title}>OncoGest</h1>
-        <p className={styles.subtitle}>Sistema de Gestión Oncológica</p>
+        <div className={styles.divider} />
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
-            <input
-              type="password"
-              className={`input ${styles.input} ${error ? styles.inputError : ''}`}
-              placeholder="Contraseña"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setError(false);
-              }}
-              autoFocus
-            />
+            <label className={styles.inputLabel}>Introduce tu contraseña</label>
+            <div className={styles.inputWrapper}>
+              <KeyRound size={18} className={styles.inputIcon} />
+              <input
+                type="password"
+                className={`input ${styles.input} ${error ? styles.inputError : ''}`}
+                placeholder="Contraseña"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError(false);
+                }}
+                autoFocus
+              />
+            </div>
           </div>
 
           {error && (
             <div className={styles.error}>
               <AlertCircle size={16} />
-              <span>Contraseña incorrecta</span>
+              <span>Contraseña incorrecta. Inténtalo de nuevo.</span>
             </div>
           )}
 
-          <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
+          <button
+            type="submit"
+            className={`btn btn-primary ${styles.submitButton}`}
+            style={{ width: '100%' }}
+          >
             Acceder
+            <ArrowRight size={18} />
           </button>
         </form>
+
+        <div className={styles.footer}>
+          <p className={styles.footerText}>
+            Acceso restringido al personal autorizado
+          </p>
+        </div>
       </div>
     </div>
   );

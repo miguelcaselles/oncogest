@@ -53,21 +53,28 @@ export function useMedicamentos() {
   }, []);
 
   const searchMedicamentos = useCallback(async (query: string): Promise<Medicamento[]> => {
-    if (!isSupabaseConfigured() || !query.trim()) {
+    if (!query.trim()) {
       return [];
     }
 
     try {
+      // Escape special characters for ilike pattern
+      const escapedQuery = query.trim().replace(/[%_]/g, '\\$&');
+
       const { data, error: searchError } = await supabase
         .from('medicamentos')
         .select('*')
-        .ilike('nombre', `%${query}%`)
+        .ilike('nombre', `%${escapedQuery}%`)
         .order('nombre', { ascending: true })
-        .limit(20);
+        .limit(50);
 
-      if (searchError) throw searchError;
+      if (searchError) {
+        console.error('Search error:', searchError);
+        throw searchError;
+      }
       return data || [];
-    } catch {
+    } catch (err) {
+      console.error('Error searching medicamentos:', err);
       return [];
     }
   }, []);

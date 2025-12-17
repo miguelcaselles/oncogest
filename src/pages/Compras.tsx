@@ -97,7 +97,7 @@ export function Compras() {
       </div>
 
       {!showHistorico && (
-        <div className={`card ${styles.formCard}`}>
+        <div className={`card card-overflow-visible ${styles.formCard}`}>
           <h2 className={styles.formTitle}>Añadir Registro</h2>
           <div className={styles.formGrid}>
             <div className={styles.formGroup}>

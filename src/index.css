@@ -228,6 +228,10 @@ body {
   overflow: hidden;
 }
 
+.card-overflow-visible {
+  overflow: visible;
+}
+
 /* ==================== TABLES ==================== */
 .table-container {
   overflow-x: auto;

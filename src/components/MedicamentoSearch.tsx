@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Search, X } from 'lucide-react';
-import { useMedicamentos } from '../hooks/useMedicamentos';
+import { supabase } from '../lib/supabase';
 import type { Medicamento } from '../types';
 import styles from './MedicamentoSearch.module.css';
 
@@ -14,9 +14,30 @@ export function MedicamentoSearch({ onSelect, placeholder = 'Buscar medicamento.
   const [results, setResults] = useState<Medicamento[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { searchMedicamentos } = useMedicamentos();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const searchMedicamentos = useCallback(async (searchQuery: string): Promise<Medicamento[]> => {
+    if (!searchQuery.trim()) return [];
+
+    try {
+      const { data, error } = await supabase
+        .from('medicamentos')
+        .select('*')
+        .ilike('nombre', `%${searchQuery.trim()}%`)
+        .order('nombre', { ascending: true })
+        .limit(50);
+
+      if (error) {
+        console.error('Search error:', error);
+        return [];
+      }
+      return data || [];
+    } catch (err) {
+      console.error('Error searching:', err);
+      return [];
+    }
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -30,17 +51,18 @@ export function MedicamentoSearch({ onSelect, placeholder = 'Buscar medicamento.
   }, []);
 
   useEffect(() => {
+    if (query.trim().length < 2) {
+      setResults([]);
+      setIsOpen(false);
+      return;
+    }
+
+    setLoading(true);
     const searchTimeout = setTimeout(async () => {
-      if (query.trim().length >= 2) {
-        setLoading(true);
-        const data = await searchMedicamentos(query);
-        setResults(data);
-        setIsOpen(true);
-        setLoading(false);
-      } else {
-        setResults([]);
-        setIsOpen(false);
-      }
+      const data = await searchMedicamentos(query);
+      setResults(data);
+      setIsOpen(true);
+      setLoading(false);
     }, 300);
 
     return () => clearTimeout(searchTimeout);

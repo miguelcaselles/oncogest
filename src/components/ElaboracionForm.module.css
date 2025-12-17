@@ -1,0 +1,30 @@
+.dateInput {
+  cursor: pointer;
+}
+
+.dateInput::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 0.375rem;
+  border-radius: var(--radius);
+  transition: background-color 150ms ease;
+}
+
+.dateInput::-webkit-calendar-picker-indicator:hover {
+  background-color: var(--color-primary-light);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formGridFull {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 480px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

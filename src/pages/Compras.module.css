@@ -1,0 +1,156 @@
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-gray-900);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: var(--color-gray-500);
+  line-height: 1.5;
+}
+
+.formCard {
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, white 0%, var(--color-gray-50) 100%);
+  border: 1px solid var(--color-gray-100);
+}
+
+.formTitle {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formTitle::before {
+  content: '';
+  width: 4px;
+  height: 1.25rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #14b8a6 100%);
+  border-radius: var(--radius-full);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 140px auto;
+  gap: 1.25rem;
+  align-items: flex-end;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectedMedicamento {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding: 0.625rem 0.875rem;
+  background: linear-gradient(135deg, var(--color-success-50) 0%, var(--color-success-light) 100%);
+  color: #065f46;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid var(--color-success-light);
+}
+
+.selectedMedicamento svg {
+  flex-shrink: 0;
+}
+
+.stockColumn {
+  text-align: center;
+  width: 100px;
+}
+
+.checkboxColumn {
+  text-align: center;
+  width: 100px;
+}
+
+.actionsColumn {
+  text-align: center;
+  width: 80px;
+}
+
+.pedidoRealizado {
+  background-color: var(--color-success-50) !important;
+}
+
+.pedidoRealizado:hover {
+  background-color: var(--color-success-light) !important;
+}
+
+.pedidoRealizado td {
+  color: #065f46;
+}
+
+.dateHeader {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-gray-50) 100%);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--color-gray-700);
+  border-bottom: 1px solid var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateHeader::before {
+  content: '📅';
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.25rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .formGroup button {
+    width: 100%;
+  }
+
+  .stockColumn,
+  .checkboxColumn {
+    width: 80px;
+  }
+}

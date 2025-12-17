@@ -1,0 +1,68 @@
+.checkboxColumn {
+  text-align: center;
+  width: 100px;
+}
+
+.actionsColumn {
+  text-align: center;
+  width: 100px;
+}
+
+.actionsCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+}
+
+.preparacionCell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.preparacionText {
+  font-weight: 600;
+  color: var(--color-gray-800);
+}
+
+.warningIcon {
+  color: var(--color-danger);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.caducidadCell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dosisCell {
+  color: var(--color-gray-600);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .checkboxColumn {
+    width: 70px;
+  }
+
+  .actionsColumn {
+    width: 90px;
+  }
+
+  .actionsCell {
+    gap: 0.25rem;
+  }
+}
